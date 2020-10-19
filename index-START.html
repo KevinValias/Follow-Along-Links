@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>👀👀👀Follow Along Nav</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <ul class="menu">
+        <li><a href="">Home</a></li>
+        <li><a href="">Order Status</a></li>
+        <li><a href="">Tweets</a></li>
+        <li><a href="">Read Our History</a></li>
+        <li><a href="">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <p>
+        Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit.
+        Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati
+        distinctio, aut itaque, qui vitae!
+      </p>
+      <p>
+        Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque
+        praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate
+        consequuntur facilis ullam dignissimos, aperiam quam veniam.
+      </p>
+      <p>
+        Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime
+        <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit
+        recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.
+      </p>
+      <p>
+        Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni
+        odit <a href="">totam</a> ut consequatur eveniet sunt quam provident
+        sapiente dicta neque quod.
+      </p>
+      <p>
+        Aliquam <a href="">dicta</a> sequi culpa fugiat
+        <a href="">consequuntur</a> pariatur optio ad minima, maxime
+        <a href="">odio</a>, distinctio magni impedit tempore enim repellendus
+        <a href="">repudiandae</a> quas!
+      </p>
+    </div>
+
+    <script>
+      const triggers = document.querySelectorAll("a"); // Get all the triggers: things that will be hovered that need a background behind it.
+      const highlight = document.createElement("span"); // create a highlight
+      highlight.classList.add("highlight"); // add a class of highlight
+      document.body.appendChild(highlight); // put it into the DOM
+
+      function highlightLink() {
+        // listen for when someone enters into a link
+        const linkCoords = this.getBoundingClientRect(); // method to get the coodinates of the elements
+        console.log(linkCoords);
+
+        const coords = {
+          width: linkCoords.width,
+          height: linkCoords.height,
+          top: linkCoords.top + window.scrollY,
+          left: linkCoords.left + window.scrollX,
+        };
+
+        highlight.style.width = `${coords.width}px`; // 36 & 37 will dynamically apply the style, BUT after doing this is you scroll down just a tiny bit
+        highlight.style.height = `${coords.height}px`; // you will see the highlight will no longer be flush with your words
+        highlight.style.transform = `translate(${linkCoords.left}px, ${linkCoords.top}px)`; // to fix that we create a variable for coords and define the position of the highlight with windowSCROLL
+      }
+
+      triggers.forEach((a) => a.addEventListener("mouseenter", highlightLink)); // listen for the mouse enter event on each of out triggers
+      // now we need to figure out the width and the height of our elements that we hover on and where on the page is that actual element
+    </script>
+  </body>
+</html>
